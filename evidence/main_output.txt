@@ -1,0 +1,52 @@
+Missing values before cleaning
+Time         0
+Room         0
+Temp_C       1
+CO2_ppm      1
+Occupancy    1
+Power_kW     0
+
+Cleaned missing-value rows
+ Time  Temp_C  CO2_ppm  Occupancy
+10:02    21.9    690.0         22
+10:04    22.3    750.0         25
+10:07    22.7    830.0         29
+
+3-minute rolling statistics
+ Time  Temp_C_roll3  CO2_ppm_roll3  Power_kW_roll3
+10:02        21.700        653.333           3.367
+10:03        21.900        686.667           3.567
+10:04        22.100        720.000           3.767
+10:05        22.300        750.000           4.000
+10:06        22.467        780.000           4.200
+
+Feature engineering results
+ Time  occupancy_density  energy_per_student  comfort_flag
+10:03              0.600              0.1583          True
+10:06              0.725              0.1517          True
+10:09              0.825              0.1545          True
+10:11              0.925              0.1541          True
+
+Statistical analysis
+Temperature mean: 22.4833
+Temperature median: 22.55
+Temperature minimum: 21.5
+Temperature maximum: 23.3
+CO2 mean: 789.1667
+CO2 maximum: 950
+Highest power: 10:11 (5.7 kW)
+Occupancy-power correlation: 0.9946
+
+Operational interpretation
+1. Occupancy and power rise closely together in this synthetic stream. Occupancy-aware controls could help avoid unnecessary energy demand.
+2. Rolling temperature and CO2 rise through the period. The trend can be used as an early signal to review ventilation or room-control settings.
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/generated/interface/models.py", line 32317, in hydrate_crdt_from_proto
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
